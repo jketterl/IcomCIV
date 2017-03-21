@@ -1,9 +1,6 @@
 #ifndef IcomCIV_h
 #define IcomCIV_h
 
-// 19200 should work with "AUTO" setting
-#define ICOM_BAUDRATE 19200
-
 #include "HardwareSerial.h"
 #include "Arduino.h"
 
@@ -16,11 +13,11 @@ class IcomCIV {
 		int mode = 0;
 
 		void parseMessage();
+		void process();
 		byte bcd_to_dec(byte bcd);
 	public:
-		IcomCIV(HardwareSerial serial);
-		void begin();
-		void process();
+		IcomCIV();
+		void begin(HardwareSerial serial, int baudRate);
 		long getFrequency();
 };
 

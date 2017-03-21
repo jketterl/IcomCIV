@@ -1,11 +1,11 @@
 #include "IcomCIV.h"
 
-IcomCIV::IcomCIV(HardwareSerial s) {
-	serial = &s;
+IcomCIV::IcomCIV() {
 }
 
-void IcomCIV::begin() {
-	serial->begin(ICOM_BAUDRATE);
+void IcomCIV::begin(HardwareSerial s, int baudRate) {
+	serial = &s;
+	serial->begin(baudRate);
 }
 
 void IcomCIV::process() {
@@ -53,6 +53,7 @@ void IcomCIV::parseMessage() {
 }
 
 long IcomCIV::getFrequency() {
+	process();
 	return frequency;
 }
 
